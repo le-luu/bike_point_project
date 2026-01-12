@@ -8,7 +8,7 @@ import logging
 # Documentation: https://api.tfl.gov.uk/swagger/ui/#!/BikePoint/BikePoint_GetAll
 url = 'https://api.tfl.gov.uk/BikePoint'
 filename = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-
+dir = "data"
 logs_dir = "logs"
 
 if not os.path.exists(logs_dir):
@@ -29,9 +29,7 @@ while count< number_of_retries:
     response = requests.get(url, timeout=10)
     response_code = response.status_code
 
-    if response_code != 200:
-
-        dir = "data"
+    if response_code == 200:
 
         if not os.path.exists(dir):
             os.mkdir(dir)
