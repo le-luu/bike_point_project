@@ -3,21 +3,21 @@ import os
 from datetime import datetime
 from modules.logging import logging_function
 
-def load_function(data_dir, access_key, secret_key, bucket, logger):
+def load_function(data_dir, AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_BUCKET_NAME, logger):
 
     s3_client = boto3.client('s3', 
-                         aws_access_key_id=access_key, 
-                         aws_secret_access_key=secret_key
+                         aws_access_key_id=AWS_ACCESS_KEY, 
+                         aws_secret_access_key=AWS_SECRET_KEY
     )
     for (root,_,files) in os.walk(data_dir,topdown=True):
         print("Root:",root)
         for file in files:
             if len(files)>0 and file.endswith('.json'):
                 try:
-                    s3_client.upload_file(os.path.join(root,file), bucket, file)
+                    s3_client.upload_file(os.path.join(root,file), AWS_BUCKET_NAME, file)
                     os.remove(os.path.join(root,file))
-                    print(f"Uploaded {file} to S3 bucket {bucket} and Removed {file} in local successfully.")
-                    logger.info(f"Uploaded {file} to S3 bucket {bucket} and Removed {file} in local successfully.")
+                    print(f"Uploaded {file} to S3 bucket {AWS_BUCKET_NAME} and Removed {file} in local successfully.")
+                    logger.info(f"Uploaded {file} to S3 bucket {AWS_BUCKET_NAME} and Removed {file} in local successfully.")
                 except Exception as e:
                     print(f"Failed to upload {file}. Error: {e}")
                     logger.error(f"Failed to upload {file}. Error: {e}")
