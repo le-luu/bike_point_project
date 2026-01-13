@@ -1,3 +1,5 @@
+# BIKE POINT PROJECT
+=======
 # BIKE POINT Project
 <img src="https://github.com/le-luu/bike_point_project/blob/main/img/TIL%20Logo%20PDF.png" width="300" />
 
@@ -99,3 +101,4 @@ Then, check the data and log folder
   ```
   python extract_bp_data.py
   ```
+
