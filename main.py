@@ -13,7 +13,9 @@ def main():
 
     # extract_logs=os.makedirs("extract_logs",exist_ok=True)
     # extract_logs_dir = os.path.join(os.getcwd(),extract_logs)
-    extract_logger = logging_function("extract", timestamp)
+    os.makedirs("extract_logs",exist_ok=True)
+    extract_log_path = os.path.join(os.getcwd(),"extract_logs")
+    extract_logger = logging_function(extract_log_path, timestamp)
 
     extract_function(url, 3, extract_logger, timestamp)
 
@@ -25,9 +27,10 @@ def main():
     AWS_BUCKET_NAME = os.getenv("AWS_BUCKET_NAME") 
 
     # print("Current dir: ",os.getcwd())
-    # load_logs=os.makedirs("load_logs",exist_ok=True)
-    # load_logs_dir = os.path.join(os.getcwd(),load_logs)
-    load_logger = logging_function("load", timestamp)
+
+    os.makedirs("load_logs",exist_ok=True)
+    load_log_path = os.path.join(os.getcwd(),"load_logs")
+    load_logger = logging_function(load_log_path, timestamp)
     load_function(data_path,AWS_ACCESS_KEY,AWS_SECRET_KEY,AWS_BUCKET_NAME, load_logger)
 
 if __name__=="__main__":

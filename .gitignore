@@ -3,6 +3,7 @@ data
 logs
 extract_logs
 load_logs
+kestra
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
